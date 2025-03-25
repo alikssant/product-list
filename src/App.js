@@ -134,10 +134,20 @@ function SingleDessert({ des }) {
   return (
     <div className="single-container">
       <img className="img-product" src={des.image.desktop} alt={des.name} />
+      <Button />
 
       <p>{des.category}</p>
       <h4>{des.name}</h4>
-      <h3>${des.price.toFixed(2)}</h3>
+      <h4 className="price">${des.price.toFixed(2)}</h4>
     </div>
+  );
+}
+
+function Button() {
+  return (
+    <button>
+      <img src="/assets/images/icon-add-to-cart.svg" alt="Add to cart" />
+      Add to Cart
+    </button>
   );
 }

@@ -39,13 +39,57 @@ h1 {
   margin-left: 6rem;
 }
 .single-container {
-  margin-top: 20px;
+  margin: 10px 0 12px 0;
   display: flex;
   flex-direction: column;
   align-items: start;
+  position: relative;
 }
 
 .img-product {
+  border-radius: 10px;
   width: 90%;
   height: 87%;
+}
+
+.single-container p {
+  margin-top: 20px;
+}
+
+.single-container .price {
+  color: var(--color-red);
+}
+
+.single-container h4 {
+  margin: 2px 0 2px 0;
+  color: var(--color-rose-900);
+}
+
+button {
+  width: 150px;
+  height: 40px;
+  padding: 0px 20px;
+  color: var(--color-rose-900);
+  margin-left: 3px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 20px;
+  border: 1px solid var(--color-rose-900);
+  cursor: pointer;
+  position: absolute;
+  top: 320px;
+  left: 100px;
+}
+
+button img {
+  margin-right: 6px;
+}
+
+button:hover {
+  border-color: var(--color-red);
+  color: var(--color-red);
 }
