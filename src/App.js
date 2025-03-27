@@ -112,9 +112,10 @@ const desserts = [
 export default function App() {
   return (
     <>
+      <h1>Desserts</h1>
       <div className="main-section">
-        <h1>Desserts</h1>
         <DessertsList />
+        <YourCart />
       </div>
     </>
   );
@@ -149,5 +150,20 @@ function Button() {
       <img src="/assets/images/icon-add-to-cart.svg" alt="Add to cart" />
       Add to Cart
     </button>
+  );
+}
+
+function YourCart() {
+  return (
+    <div className="cart-container">
+      <h2>Your Cart (0)</h2>
+      <div>
+        <img
+          src=" /assets/images/illustration-empty-cart.svg"
+          alt="Your Cart"
+        />
+        <p>Your added items will appear here</p>
+      </div>
+    </div>
   );
 }
