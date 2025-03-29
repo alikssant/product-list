@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const desserts = [
   {
     id: crypto.randomUUID(),
@@ -145,10 +147,52 @@ function SingleDessert({ des }) {
 }
 
 function Button() {
+  const [itemAdded, setItemAdded] = useState(false);
+
+  const [quantity, setQuantity] = useState(0);
+
+  const handleAddtoCart = () => {
+    setItemAdded(true);
+    setQuantity(1);
+  };
+
+  const increaseQuantity = (e) => {
+    e.stopPropagation();
+
+    setQuantity((prev) => prev + 1);
+  };
+
+  const decreaseQuantity = (e) => {
+    e.stopPropagation();
+    if (quantity > 1) {
+      setQuantity((prev) => prev - 1);
+    } else {
+      setItemAdded(false);
+      setQuantity(0);
+    }
+  };
+
   return (
-    <button>
-      <img src="/assets/images/icon-add-to-cart.svg" alt="Add to cart" />
-      Add to Cart
+    <button
+      onClick={!itemAdded ? handleAddtoCart : null}
+      className={itemAdded ? "added" : ""}
+    >
+      {!itemAdded ? (
+        <>
+          <img src="/assets/images/icon-add-to-cart.svg" alt="Add to cart" />
+          Add to Cart
+        </>
+      ) : (
+        <div className="quantity-control">
+          <span className="quantity-btn" onClick={decreaseQuantity}>
+            -
+          </span>
+          <span className="quantity-value">{quantity}</span>
+          <span className="quantity-btn" onClick={increaseQuantity}>
+            +
+          </span>
+        </div>
+      )}
     </button>
   );
 }

@@ -34,7 +34,7 @@ body {
   grid-template-columns: 1fr 1fr 1fr;
   width: 70%;
   height: 60%;
-  gap: 10px;
+  gap: 5px;
   margin-top: 2rem;
   margin-left: 6rem;
 }
@@ -71,7 +71,7 @@ h1 {
 }
 
 button {
-  width: 150px;
+  width: 180px;
   height: 40px;
   padding: 0px 20px;
   color: var(--color-rose-900);
@@ -88,6 +88,41 @@ button {
   position: absolute;
   top: 320px;
   left: 100px;
+}
+
+button.added {
+  background-color: var(--color-red);
+  color: var(--color-rose-50);
+  border-color: var(--color-red);
+}
+
+button.added .quantity-btn,
+button.added .quantity-value {
+  color: var(--color-rose-50);
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.quantity-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 24px;
+  height: 24px;
+  border: solid var(--color-rose-50);
+  border-radius: 55px;
+
+  cursor: pointer;
+}
+
+.quantity-value {
+  padding: 0 0.5rem;
 }
 
 button img {
