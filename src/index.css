@@ -124,8 +124,16 @@ button.added .quantity-value {
   cursor: pointer;
 }
 
+.quantity-btn:hover {
+  background-color: var(--color-rose-50);
+}
+
 .quantity-value {
   padding: 0 0.5rem;
+}
+
+button.added .quantity-btn:hover {
+  color: var(--color-red);
 }
 
 button img {

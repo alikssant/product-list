@@ -2,52 +2,96 @@ import { useState } from "react";
 import { desserts } from "./desserts";
 
 export default function App() {
+  const [itemAdded, setItemAdded] = useState(false);
+  const [quantity, setQuantity] = useState(0);
+
+  const [cartItems, setCartItems] = useState(
+    desserts.map((dessert) => ({
+      id: dessert.id,
+      itemAdded: false,
+      quantity: 0,
+    }))
+  );
+
+  const handleAddtoCart = (id) => {
+    setCartItems((prev) =>
+      prev.map((item) =>
+        item.id === id ? { ...item, itemAdded: true, quantity: 1 } : item
+      )
+    );
+  };
+
+  const increaseQuantity = (id) => {
+    setCartItems((prev) =>
+      prev.map((item) =>
+        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+      )
+    );
+  };
+
+  const decreaseQuantity = (id) => {
+    setCartItems((prev) =>
+      prev.map((item) =>
+        item.id === id
+          ? {
+              ...item,
+              quantity: item.quantity > 1 ? item.quantity - 1 : 0,
+              itemAdded: item.quantity > 1,
+            }
+          : item
+      )
+    );
+  };
   return (
     <>
       <h1>Desserts</h1>
       <div className="main-section">
-        <DessertsList />
+        <DessertsList
+          handleAddtoCart={handleAddtoCart}
+          increaseQuantity={increaseQuantity}
+          decreaseQuantity={decreaseQuantity}
+          cartItems={cartItems}
+        />
         <YourCart />
       </div>
     </>
   );
 }
-function DessertsList() {
-  const dessert = desserts;
+
+function DessertsList({
+  cartItems,
+  handleAddtoCart,
+  increaseQuantity,
+  decreaseQuantity,
+}) {
   return (
     <div className="main-container">
-      {dessert.map((des) => (
-        <SingleDessert des={des} key={des.id} />
-      ))}
+      {desserts.map((des) => {
+        const cartItem = cartItems.find((item) => item.id === des.id); // ✅ Find correct dessert state
+        return (
+          <SingleDessert
+            key={des.id}
+            des={des}
+            itemAdded={cartItem.itemAdded}
+            quantity={cartItem.quantity}
+            handleAddtoCart={() => handleAddtoCart(des.id)}
+            increaseQuantity={() => increaseQuantity(des.id)}
+            decreaseQuantity={() => decreaseQuantity(des.id)}
+          />
+        );
+      })}
     </div>
   );
 }
 
-function SingleDessert({ des }) {
-  const [itemAdded, setItemAdded] = useState(false);
-
-  const [quantity, setQuantity] = useState(0);
-
-  const handleAddtoCart = () => {
-    setItemAdded(true);
-    setQuantity(1);
-  };
-
-  const increaseQuantity = (e) => {
-    e.stopPropagation();
-
-    setQuantity((prev) => prev + 1);
-  };
-
-  const decreaseQuantity = (e) => {
-    e.stopPropagation();
-    if (quantity > 1) {
-      setQuantity((prev) => prev - 1);
-    } else {
-      setItemAdded(false);
-      setQuantity(0);
-    }
-  };
+function SingleDessert({
+  itemAdded,
+  handleAddtoCart,
+  increaseQuantity,
+  decreaseQuantity,
+  quantity,
+  des,
+}) {
   return (
     <div className="single-container">
       <img
@@ -55,6 +99,7 @@ function SingleDessert({ des }) {
         src={des.image.desktop}
         alt={des.name}
       />
+
       <Button
         itemAdded={itemAdded}
         handleAddtoCart={handleAddtoCart}
