@@ -55,6 +55,9 @@ h1 {
   width: 90%;
   height: 87%;
 }
+.img-product.border-red {
+  border: 2px solid var(--color-red);
+}
 
 .single-container p {
   margin-top: 20px;
