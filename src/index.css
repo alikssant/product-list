@@ -170,3 +170,32 @@ button:hover {
 .cart-container p {
   color: var(--color-rose-500);
 }
+
+.cart-container-with-items {
+  width: 22%;
+  height: 300px;
+  background-color: var(--color-rose-50);
+  border-radius: 10px;
+}
+
+.cart-container-with-items h2 {
+  color: var(--color-red);
+  padding-left: 20px;
+  padding-top: 20px;
+}
+
+.cart-container-with-items div {
+  margin-top: 10px;
+  margin-left: 20px;
+}
+
+.cart-container-with-items .item-name {
+  color: black;
+  font-weight: 600;
+}
+.cart-container-with-items p {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+}

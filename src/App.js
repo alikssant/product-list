@@ -2,9 +2,6 @@ import { useState } from "react";
 import { desserts } from "./desserts";
 
 export default function App() {
-  // const [itemAdded, setItemAdded] = useState(false);
-  // const [quantity, setQuantity] = useState(0);
-
   const [cartItems, setCartItems] = useState(
     desserts.map((dessert) => ({
       id: dessert.id,
@@ -151,15 +148,31 @@ function Button({
 
 function YourCart({ totalItems }) {
   return (
-    <div className="cart-container">
-      <h2>Your Cart ({totalItems})</h2>
-      <div>
-        <img
-          src=" /assets/images/illustration-empty-cart.svg"
-          alt="Your Cart"
-        />
-        <p>Your added items will appear here</p>
-      </div>
-    </div>
+    <>
+      {!totalItems > 0 ? (
+        <div className="cart-container">
+          <h2>Your Cart ({totalItems})</h2>
+          <div>
+            <img
+              src=" /assets/images/illustration-empty-cart.svg"
+              alt="Your Cart"
+            />
+            <p>Your added items will appear here</p>
+          </div>
+        </div>
+      ) : (
+        <div className="cart-container-with-items">
+          <h2>Your Cart ({totalItems})</h2>
+          <div>
+            <p className="item-name">Classic Tiramisu</p>
+            <p>
+              <span>1x</span>
+              <span>@$5.50</span>
+              <span>$5.50</span>
+            </p>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
