@@ -2,8 +2,8 @@ import { useState } from "react";
 import { desserts } from "./desserts";
 
 export default function App() {
-  const [itemAdded, setItemAdded] = useState(false);
-  const [quantity, setQuantity] = useState(0);
+  // const [itemAdded, setItemAdded] = useState(false);
+  // const [quantity, setQuantity] = useState(0);
 
   const [cartItems, setCartItems] = useState(
     desserts.map((dessert) => ({
@@ -42,6 +42,8 @@ export default function App() {
       )
     );
   };
+  const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+  console.log(totalItems);
   return (
     <>
       <h1>Desserts</h1>
@@ -52,7 +54,7 @@ export default function App() {
           decreaseQuantity={decreaseQuantity}
           cartItems={cartItems}
         />
-        <YourCart />
+        <YourCart totalItems={totalItems} />
       </div>
     </>
   );
@@ -147,10 +149,10 @@ function Button({
   );
 }
 
-function YourCart() {
+function YourCart({ totalItems }) {
   return (
     <div className="cart-container">
-      <h2>Your Cart (0)</h2>
+      <h2>Your Cart ({totalItems})</h2>
       <div>
         <img
           src=" /assets/images/illustration-empty-cart.svg"
