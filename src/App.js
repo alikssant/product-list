@@ -151,7 +151,7 @@ function YourCart({ totalItems }) {
     <>
       {!totalItems > 0 ? (
         <div className="cart-container">
-          <h2>Your Cart ({totalItems})</h2>
+          <h3>Your Cart ({totalItems})</h3>
           <div>
             <img
               src=" /assets/images/illustration-empty-cart.svg"
@@ -162,14 +162,15 @@ function YourCart({ totalItems }) {
         </div>
       ) : (
         <div className="cart-container-with-items">
-          <h2>Your Cart ({totalItems})</h2>
+          <h3>Your Cart ({totalItems})</h3>
           <div>
             <p className="item-name">Classic Tiramisu</p>
-            <p>
-              <span>1x</span>
-              <span>@$5.50</span>
-              <span>$5.50</span>
-            </p>
+            <div class="item-details">
+              <span class="item-quantity">1x</span>
+              <span class="item-unit-price">@$8.00</span>
+              <span class="item-total-price">$8.00</span>
+              <button class="remove-button">x</button>
+            </div>
           </div>
         </div>
       )}
