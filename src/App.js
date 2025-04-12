@@ -169,7 +169,18 @@ function YourCart({ totalItems }) {
               <span class="item-quantity">1x</span>
               <span class="item-unit-price">@$8.00</span>
               <span class="item-total-price">$8.00</span>
-              <button class="remove-button">x</button>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="12"
+                height="12"
+                viewBox="0 0 10 10"
+                className="remove-button"
+              >
+                <path
+                  d="M8.375 9.375 5 6 1.625 9.375l-1-1L4 5 .625 1.625l1-1L5 4 8.375.625l1 1L6 5l3.375 3.375-1 1Z"
+                  fill="currentColor"
+                />
+              </svg>
             </div>
           </div>
         </div>
