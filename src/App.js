@@ -66,7 +66,7 @@ function DessertsList({
   return (
     <div className="main-container">
       {desserts.map((des) => {
-        const cartItem = cartItems.find((item) => item.id === des.id); // ✅ Find correct dessert state
+        const cartItem = cartItems.find((item) => item.id === des.id);
         return (
           <SingleDessert
             key={des.id}
@@ -124,7 +124,7 @@ function Button({
   return (
     <button
       onClick={!itemAdded ? handleAddtoCart : null}
-      className={itemAdded ? "added" : ""}
+      className={itemAdded ? "added" : "main"}
     >
       {!itemAdded ? (
         <>
@@ -165,7 +165,7 @@ function YourCart({ totalItems }) {
           <h3>Your Cart ({totalItems})</h3>
           <div>
             <p className="item-name">Classic Tiramisu</p>
-            <div class="item-details">
+            <div className="item-details">
               <span class="item-quantity">1x</span>
               <span class="item-unit-price">@$8.00</span>
               <span class="item-total-price">$8.00</span>
@@ -182,6 +182,21 @@ function YourCart({ totalItems }) {
                 />
               </svg>
             </div>
+          </div>
+          <div className="cart-summary">
+            <div className="total-div">
+              <p>Order Total</p>
+              <p className="carbon-total">$8.00</p>
+            </div>
+            <p className="carbo-neutral">
+              <img
+                src="/assets/images/icon-carbon-neutral.svg"
+                alt="carbon-neutral"
+              />
+              This is a carbo-neutral delivery
+            </p>
+
+            <button className="confirm-order">Confirm Order</button>
           </div>
         </div>
       )}

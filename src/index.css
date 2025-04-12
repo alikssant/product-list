@@ -73,7 +73,7 @@ h1 {
   color: var(--color-rose-900);
 }
 
-button {
+button.main {
   width: 180px;
   height: 40px;
   padding: 0px 20px;
@@ -94,6 +94,22 @@ button {
 }
 
 button.added {
+  width: 180px;
+  height: 40px;
+  padding: 0px 20px;
+  margin-left: 3px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 20px;
+  border: 1px solid var(--color-rose-900);
+  cursor: pointer;
+  position: absolute;
+  top: 320px;
+  left: 100px;
   background-color: var(--color-red);
   color: var(--color-rose-50);
   border-color: var(--color-red);
@@ -198,7 +214,7 @@ button:hover {
 
 .cart-container-with-items {
   width: 22%;
-  height: 300px;
+  height: 30%;
   background-color: var(--color-rose-50);
   border-radius: 10px;
 }
@@ -269,4 +285,45 @@ button:hover {
   border-color: black;
   background-color: #f9f0ed;
   color: black;
+}
+
+.total-div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.carbon-total {
+  font-size: 1.5em;
+  font-weight: var(--font-weight-bold);
+}
+.carbo-neutral {
+  margin-top: 24px;
+  gap: 10px;
+  display: flex;
+  padding: 10px;
+  border-radius: 9px;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-rose-100);
+}
+
+.confirm-order {
+  margin-top: 18px;
+  margin-bottom: 18px;
+  width: 100%;
+  border: none;
+  padding: 1rem;
+  font-size: 0.9em;
+  cursor: pointer;
+  border-radius: 50px;
+  color: hsl(0, 0%, 100%);
+  background-color: var(--color-red);
+  font-weight: var(--font-weight-medium);
+}
+
+.confirm-order:hover {
+  color: black;
+  background-color: var(--color-red);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  filter: brightness(0.95);
 }
