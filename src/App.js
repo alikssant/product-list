@@ -286,7 +286,6 @@ function YourCart({ totalItems, cartItems, setCartItems, setOrderConfirmed }) {
   );
 }
 
-// OrderConfirmationModal.jsx
 function OrderConfirmationModal({ cartItems, desserts, onClose }) {
   const matchedDesserts = cartItems
     .filter((item) => item.itemAdded && item.quantity > 0)
