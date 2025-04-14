@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { desserts } from "./desserts";
 import { motion, AnimatePresence } from "framer-motion";
+
 export default function App() {
   const [cartItems, setCartItems] = useState(
     desserts.map((dessert) => ({
@@ -9,6 +10,8 @@ export default function App() {
       quantity: 0,
     }))
   );
+
+  const [orderConfirmed, setOrderConfirmed] = useState(false);
 
   const handleAddtoCart = (id) => {
     setCartItems((prev) =>
@@ -39,9 +42,9 @@ export default function App() {
       )
     );
   };
+
   const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
-  console.log(cartItems);
-  //console.log(totalItems);
+
   return (
     <>
       <h1>Desserts</h1>
@@ -52,11 +55,30 @@ export default function App() {
           decreaseQuantity={decreaseQuantity}
           cartItems={cartItems}
         />
+
         <YourCart
           totalItems={totalItems}
           cartItems={cartItems}
           setCartItems={setCartItems}
+          setOrderConfirmed={setOrderConfirmed}
         />
+
+        {orderConfirmed && (
+          <OrderConfirmationModal
+            cartItems={cartItems}
+            desserts={desserts}
+            onClose={() => {
+              setOrderConfirmed(false);
+              setCartItems(
+                cartItems.map((item) => ({
+                  ...item,
+                  itemAdded: false,
+                  quantity: 0,
+                }))
+              );
+            }}
+          />
+        )}
       </div>
     </>
   );
@@ -151,64 +173,7 @@ function Button({
   );
 }
 
-// function YourCart({ totalItems, cartItems }) {
-//   return (
-//     <>
-//       {!totalItems > 0 ? (
-//         <div className="cart-container">
-//           <h3>Your Cart ({totalItems})</h3>
-//           <div>
-//             <img
-//               src=" /assets/images/illustration-empty-cart.svg"
-//               alt="Your Cart"
-//             />
-//             <p>Your added items will appear here</p>
-//           </div>
-//         </div>
-//       ) : (
-//         <div className="cart-container-with-items">
-//           <h3>Your Cart ({totalItems})</h3>
-//           <div>
-//             <p className="item-name">Classic Tiramisu</p>
-//             <div className="item-details">
-//               <span className="item-quantity">1x</span>
-//               <span className="item-unit-price">@$8.00</span>
-//               <span className="item-total-price">$8.00</span>
-//               <svg
-//                 xmlns="http://www.w3.org/2000/svg"
-//                 width="12"
-//                 height="12"
-//                 viewBox="0 0 10 10"
-//                 className="remove-button"
-//               >
-//                 <path
-//                   d="M8.375 9.375 5 6 1.625 9.375l-1-1L4 5 .625 1.625l1-1L5 4 8.375.625l1 1L6 5l3.375 3.375-1 1Z"
-//                   fill="currentColor"
-//                 />
-//               </svg>
-//             </div>
-//           </div>
-//           <div className="cart-summary">
-//             <div className="total-div">
-//               <p>Order Total</p>
-//               <p className="carbon-total">$8.00</p>
-//             </div>
-//             <p className="carbo-neutral">
-//               <img
-//                 src="/assets/images/icon-carbon-neutral.svg"
-//                 alt="carbon-neutral"
-//               />
-//               This is a carbo-neutral delivery
-//             </p>
-
-//             <button className="confirm-order">Confirm Order</button>
-//           </div>
-//         </div>
-//       )}
-//     </>
-//   );
-// }
-function YourCart({ totalItems, cartItems, setCartItems }) {
+function YourCart({ totalItems, cartItems, setCartItems, setOrderConfirmed }) {
   const selectedItems = cartItems.filter(
     (item) => item.itemAdded && item.quantity > 0
   );
@@ -308,10 +273,78 @@ function YourCart({ totalItems, cartItems, setCartItems }) {
               This is a carbo-neutral delivery
             </p>
 
-            <button className="confirm-order">Confirm Order</button>
+            <button
+              className="confirm-order"
+              onClick={() => setOrderConfirmed(true)}
+            >
+              Confirm Order
+            </button>
           </div>
         </motion.div>
       )}
     </>
+  );
+}
+
+// OrderConfirmationModal.jsx
+function OrderConfirmationModal({ cartItems, desserts, onClose }) {
+  const matchedDesserts = cartItems
+    .filter((item) => item.itemAdded && item.quantity > 0)
+    .map((item) => {
+      const dessert = desserts.find((d) => d.id === item.id);
+      return {
+        ...item,
+        name: dessert.name,
+        price: dessert.price,
+        image: dessert.image,
+      };
+    });
+
+  const orderTotal = matchedDesserts.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
+
+  return (
+    <div className="modal-overlay">
+      <div className="modal">
+        <img
+          src="/assets/images/icon-order-confirmed.svg"
+          className="check-icon"
+          alt="order-confirmed"
+        />
+        <h2>Order Confirmed</h2>
+        <p className="subtitle">We hope you enjoy your food!</p>
+        <div className="order-summary">
+          <div className="order-items">
+            {matchedDesserts.map((item) => (
+              <div key={item.id} className="order-item">
+                <img
+                  src={item.image.thumbnail}
+                  alt={item.name}
+                  className="item-image"
+                />
+                <div className="item-info">
+                  <strong>{item.name}</strong>
+                  <span> {item.quantity}x</span>
+                </div>
+                <div className="item-total">
+                  ${(item.quantity * item.price).toFixed(2)}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="order-total">
+            <span>Order Total</span>
+            <strong>${orderTotal.toFixed(2)}</strong>
+          </div>
+        </div>
+
+        <button className="new-order-btn" onClick={onClose}>
+          Start New Order
+        </button>
+      </div>
+    </div>
   );
 }
