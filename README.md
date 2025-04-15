@@ -16,8 +16,6 @@ This is a solution to the [Product list with cart challenge on Frontend Mentor](
 - [Author](#author)
 - [Acknowledgments](#acknowledgments)
 
-**Note: Delete this note and update the table of contents based on what sections you keep.**
-
 ## Overview
 
 ### The challenge
@@ -33,70 +31,49 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
+![Desktop Screenshot](/public/assets/1.jpg)
 
-Add a screenshot of your solution. The easiest way to do this is to use Firefox to view your project, right-click the page and select "Take a Screenshot". You can choose either a full-height screenshot or a cropped one based on how long the page is. If it's very long, it might be best to crop it.
+![Active State](/public/assets/2.jpg)
 
-Alternatively, you can use a tool like [FireShot](https://getfireshot.com/) to take the screenshot. FireShot has a free option, so you don't need to purchase it.
-
-Then crop/optimize/edit your image however you like, add it to your project, and update the file path in the image above.
-
-**Note: Delete this note and the paragraphs above when you add your screenshot. If you prefer not to add a screenshot, feel free to remove this entire section.**
+![Confirmation State](/public/assets/3.jpg)
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [Source code](https://github.com/alikssant/product-list)
+- Live Site URL: [Demo](https://your-live-site-url.com)
 
 ## My process
 
 ### Built with
 
-- HTML
-- CSS
-- Flexbox
-- CSS
-- Mobile-first workflow
+- Semantic HTML5
+- CSS Custom Properties
+- Flexbox & CSS Grid
+- Responsive Design
 - [React](https://reactjs.org/) - JS library
+- Component-based architecture
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+This project helped me strengthen my layout skills using both CSS Grid and Flexbox. I learned how to:
 
-To see how you can add code snippets, see below:
-
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
-
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
-
-```js
-const proudOfThisFunc = () => {
-  console.log("🎉");
-};
-```
-
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
-
-**Note: Delete this note and the content within this section and replace with your own learnings.**
+- Structure a responsive 3-column layout and adjust it fluidly up to 1024px and beyond.
+- Design a sticky cart panel that integrates smoothly with a dynamically updating product list.
+- Manage React component state effectively for cart item count, adding/removing products, and order resetting.
+- Improve the modularity of my code by splitting components like buttons and cards into their own files for better maintainability.
 
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
-
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
+- Persistence with localStorage so the cart doesn’t reset on refresh
+- Animations on cart interactions
+- Accessibility improvements like keyboard navigation and ARIA roles
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
+- MDN Web Docs: [mdn](https://developer.mozilla.org/en-US/)
+- React docs: [react-learn](https://react.dev/learn)
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
+- My Github - [link](https://github.com/alikssant)
+- Frontend Mentor - [alikssant](https://www.frontendmentor.io/profile/alikssant)
