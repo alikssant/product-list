@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { desserts } from "./desserts";
 import { motion, AnimatePresence } from "framer-motion";
+import { OrderConfirmationModal } from "./OrderConfirmationModal";
+import { DessertsList } from "./DessertsList";
 
 export default function App() {
   const [cartItems, setCartItems] = useState(
@@ -81,95 +83,6 @@ export default function App() {
         )}
       </div>
     </>
-  );
-}
-
-function DessertsList({
-  cartItems,
-  handleAddtoCart,
-  increaseQuantity,
-  decreaseQuantity,
-}) {
-  return (
-    <div className="main-container">
-      {desserts.map((des) => {
-        const cartItem = cartItems.find((item) => item.id === des.id);
-        return (
-          <SingleDessert
-            key={des.id}
-            des={des}
-            itemAdded={cartItem.itemAdded}
-            quantity={cartItem.quantity}
-            handleAddtoCart={() => handleAddtoCart(des.id)}
-            increaseQuantity={() => increaseQuantity(des.id)}
-            decreaseQuantity={() => decreaseQuantity(des.id)}
-          />
-        );
-      })}
-    </div>
-  );
-}
-
-function SingleDessert({
-  itemAdded,
-  handleAddtoCart,
-  increaseQuantity,
-  decreaseQuantity,
-  quantity,
-  des,
-}) {
-  return (
-    <div className="single-container">
-      <img
-        className={`img-product ${itemAdded ? "border-red" : ""}`}
-        src={des.image.desktop}
-        alt={des.name}
-      />
-
-      <Button
-        itemAdded={itemAdded}
-        handleAddtoCart={handleAddtoCart}
-        increaseQuantity={increaseQuantity}
-        decreaseQuantity={decreaseQuantity}
-        quantity={quantity}
-      />
-
-      <p>{des.category}</p>
-      <h4>{des.name}</h4>
-      <h4 className="price">${des.price.toFixed(2)}</h4>
-    </div>
-  );
-}
-
-function Button({
-  itemAdded,
-  handleAddtoCart,
-  increaseQuantity,
-  decreaseQuantity,
-  quantity,
-}) {
-  return (
-    <button
-      onClick={!itemAdded ? handleAddtoCart : null}
-      className={itemAdded ? "added" : "main"}
-    >
-      {!itemAdded ? (
-        <>
-          <img src="/assets/images/icon-add-to-cart.svg" alt="Add to cart" />
-          Add to Cart
-        </>
-      ) : (
-        <div className="quantity-control">
-          <span className="quantity-btn" onClick={decreaseQuantity}>
-            -
-          </span>
-          <span className="quantity-value">{quantity}</span>
-          <span className="quantity-btn" onClick={increaseQuantity}>
-            +
-          </span>
-        </div>
-      )}
-    </button>
   );
 }
 
@@ -283,67 +196,5 @@ function YourCart({ totalItems, cartItems, setCartItems, setOrderConfirmed }) {
         </motion.div>
       )}
     </>
-  );
-}
-
-function OrderConfirmationModal({ cartItems, desserts, onClose }) {
-  const matchedDesserts = cartItems
-    .filter((item) => item.itemAdded && item.quantity > 0)
-    .map((item) => {
-      const dessert = desserts.find((d) => d.id === item.id);
-      return {
-        ...item,
-        name: dessert.name,
-        price: dessert.price,
-        image: dessert.image,
-      };
-    });
-
-  const orderTotal = matchedDesserts.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0
-  );
-
-  return (
-    <div className="modal-overlay">
-      <div className="modal">
-        <img
-          src="/assets/images/icon-order-confirmed.svg"
-          className="check-icon"
-          alt="order-confirmed"
-        />
-        <h2>Order Confirmed</h2>
-        <p className="subtitle">We hope you enjoy your food!</p>
-        <div className="order-summary">
-          <div className="order-items">
-            {matchedDesserts.map((item) => (
-              <div key={item.id} className="order-item">
-                <img
-                  src={item.image.thumbnail}
-                  alt={item.name}
-                  className="item-image"
-                />
-                <div className="item-info">
-                  <strong>{item.name}</strong>
-                  <span> {item.quantity}x</span>
-                </div>
-                <div className="item-total">
-                  ${(item.quantity * item.price).toFixed(2)}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="order-total">
-            <span>Order Total</span>
-            <strong>${orderTotal.toFixed(2)}</strong>
-          </div>
-        </div>
-
-        <button className="new-order-btn" onClick={onClose}>
-          Start New Order
-        </button>
-      </div>
-    </div>
   );
 }

@@ -32,7 +32,7 @@ body {
 .main-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  width: 70%;
+  width: 68%;
   height: 60%;
   gap: 5px;
   margin-top: 2rem;
@@ -162,7 +162,7 @@ button:hover {
 }
 
 .cart-container {
-  width: 22%;
+  width: 24%;
   height: 300px;
   background-color: var(--color-rose-50);
   border-radius: 10px;
@@ -511,5 +511,24 @@ button:hover {
 
   .single-container {
     align-items: center;
+  }
+}
+@media (min-width: 1024px) and (max-width: 1700px) {
+  button.main,
+  button.added {
+    position: static;
+
+    left: auto;
+    top: auto;
+    width: 100%;
+  }
+
+  .single-container {
+    align-items: center;
+  }
+
+  .img-product {
+    width: 100%;
+    height: auto;
   }
 }
