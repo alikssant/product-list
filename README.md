@@ -40,7 +40,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [Source code](https://github.com/alikssant/product-list)
-- Live Site URL: [Demo](https://your-live-site-url.com)
+- Live Site URL: [Demo](https://product-list2.netlify.app/)
 
 ## My process
 
